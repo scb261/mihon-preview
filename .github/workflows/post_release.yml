@@ -2,10 +2,14 @@ name: Post release
 
 on:
   release:
-    types: [published]
+    types: 
+      - published
+      - edited
+      - deleted
 
 jobs:
   post_release:
+    if: github.event.payload.release.draft == false
     runs-on: 'ubuntu-24.04'
 
     steps:
